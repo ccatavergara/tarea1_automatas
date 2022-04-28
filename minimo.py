@@ -1,6 +1,6 @@
 from decodificador import decof
 
-url = 'dfa_input'
+url = 'dfa1'
 path = decof(url) [0]
 states = decof(url) [1]
 mini = {}
@@ -31,25 +31,38 @@ for i in mini:
     else:
         no_ticket.append(i)
     # print(f"{i} : {mini[i]}") 
+
+print(ticket)
+print(no_ticket,'\n')
 i = 0
 j = len(no_ticket)
 while(i<j):
     j=len(no_ticket)
     for x in states["Language"]:
         if path[no_ticket[i][0]][x][0] in states["End"] and path[no_ticket[i][1]][x][0] in states["Endn't"]:
+            print(i)
             mini[no_ticket[i]]= "[t]"
-            no_ticket.pop(i)
             ticket.append(no_ticket[i])
+            no_ticket.pop(i)
             i=0
-        if path[no_ticket[i][1]][x][0] in states["End"] and path[no_ticket[i][0]][x][0] in states["Endn't"]:
+        if path[no_ticket[i][1]][x][0] in states["End"] and path[no_ticket[i][0]][x][0] in states ["Endn't"]:
             mini[no_ticket[i]]= "[t]"
-            no_ticket.pop(i)
             ticket.append(no_ticket[i])
+            no_ticket.pop(i)
             i=0
+        elif tuple([path[no_ticket[i][0]][x][0],path[no_ticket[i][1]][x][0]]) in ticket:
+            print(no_ticket[i])
+            if no_ticket[i] not in ticket:
+                mini[no_ticket[i]]= "[t]"
+                ticket.append(no_ticket[i])
+                no_ticket.pop(i)
+                i=-1
+            pass
         else:
             pass
     i+=1
-print(path)
+print(ticket)
+print(no_ticket)
 # print("\n"
 # )
 # print(ticket)
