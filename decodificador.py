@@ -5,6 +5,7 @@ def decof(url):
     path = {}
 
     end=[]
+    not_final=[]
     everything=[]
     states={}
 
@@ -23,24 +24,31 @@ def decof(url):
             data_type[i] = list(reversed(temp_data))
             temp_data = []
 
-    for i in data_type["Transiciones"]:
-        if i[0] not in path:
-            path[i[0]] = {}
+    for i in data_type['Estados']:
+        est = (i.replace(">", "")).replace("*", "")
+        path[est] = {}
         for j in data_type["Alfabeto"]:
-            path[i[0]][int(j)] = []
+            path[est][int(j)] = []
 
     for i in data_type["Estados"]:
+        everything.append(i[-1])
+        states["All paths"]=everything
         if '>' in i:
             states["Start"]=i[-1]
         if "*" in i:
             end.append(i[-1])
             states["End"]=end
-        everything.append(i[-1])
-        states["Transitions"]=everything
+        else:
+            not_final.append(i[-1])
+            states["Endn't"] = not_final
     
     for i in data_type["Transiciones"]:
         for j in path[i[0]]:
             if int(i[2]) == j:
                 path[i[0]][j].append(i[-1])
+    
+    states['Language'] = []
+    for i in data_type['Alfabeto']:
+        states['Language'].append(int(i))
 
     return [path,states] 
