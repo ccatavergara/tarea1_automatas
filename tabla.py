@@ -43,4 +43,3 @@ for i in tabla:
             lista=j
             agregar(lista)
 
-print(tabla)
