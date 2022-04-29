@@ -1,0 +1,17 @@
+Estados
+*>A
+*('B', 'D')
+C
+E
+Alfabeto
+0
+1
+Transiciones
+A 0 -> ('B', 'D')
+A 1 -> C
+('B', 'D') 0 -> ('B', 'D')
+('B', 'D') 1 -> ('B', 'D')
+C 0 -> E
+C 1 -> A
+E 0 -> E
+E 1 -> E

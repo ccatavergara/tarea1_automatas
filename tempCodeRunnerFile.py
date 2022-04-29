@@ -1,4 +1,4 @@
-dic = final[i]
-    for j in dic:
-        m = encontrar(dic[j][0],tuplas)
-        dic[j]=m
+new = open(f"dfa_minimization.txt", "w")
+
+# new.write("Estados")
+# for x in final:
